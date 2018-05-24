@@ -1,52 +1,72 @@
 <!doctype html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <title>Hello World</title>
+    <meta charset="utf-8">
+    <title>Hello World</title>
 </head>
-  <script src="pixi/pixi.min.js"></script>
+<script src="pixi/pixi.min.js"></script>
+
 <body>
-  <script type="text/javascript">
-  
-  //Aliases
-let Application = PIXI.Application,
-    loader = PIXI.loader,
-    resources = PIXI.loader.resources,
-    Sprite = PIXI.Sprite;
-  
-    let type = "WebGL"
-    if(!PIXI.utils.isWebGLSupported()){
-      type = "canvas"
-    }
+    <script type="text/javascript">
+        //Aliases
+        let Application = PIXI.Application,
+            loader = PIXI.loader,
+            resources = PIXI.loader.resources,
+            Sprite = PIXI.Sprite;
 
-    PIXI.utils.sayHello(type)
-	
-	//Create a Pixi Application
-let app = new Application({width: 256, height: 256});
+        let type = "WebGL"
+        if (!PIXI.utils.isWebGLSupported()) {
+            type = "canvas"
+        }
 
-//Add the canvas that Pixi automatically created for you to the HTML document
-document.body.appendChild(app.view);
+        PIXI.utils.sayHello(type)
 
-app.renderer.view.style.position = "absolute";
-app.renderer.view.style.display = "block";
-app.renderer.autoResize = true;
-app.renderer.resize(window.innerWidth, window.innerHeight);
+        //Create a Pixi Application
+        let app = new Application({
+            width: 256,
+            height: 256
+        });
 
-//load an image and run the `setup` function when it's done
-loader
-  .add("images/cat.png")
-  .load(setup);
+        //Add the canvas that Pixi automatically created for you to the HTML document
+        document.body.appendChild(app.view);
 
-//This `setup` function will run when the image has loaded
-function setup() {
+        app.renderer.view.style.position = "absolute";
+        app.renderer.view.style.display = "block";
+        app.renderer.autoResize = true;
+        app.renderer.resize(window.innerWidth, window.innerHeight);
 
-  //Create the cat sprite
-  let cat = new Sprite(loader.resources["images/cat.png"].texture);
-  
-  //Add the cat to the stage
-  app.stage.addChild(cat);
-}
-	
-  </script>
+        //load an image and run the `setup` function when it's done
+        loader
+            .add("images/cat.png")
+            .load(setup);
+
+        //This `setup` function will run when the image has loaded
+        function setup() {
+
+            //Create the cat sprite
+            let cat = new Sprite(loader.resources["images/cat.png"].texture);
+            // positioning
+            cat.x = 96;
+            cat.y = 96;
+
+            // change size
+            cat.width = 80;
+            cat.height = 120;
+
+            cat.scale.x = 2;
+            cat.scale.y = 2;
+
+            // change anchor point
+            cat.anchor.x = 0.5;
+            cat.anchor.y = 0.5;
+
+            cat.rotation = 0.5;
+
+            //Add the cat to the stage
+            app.stage.addChild(cat);
+        }
+    </script>
 </body>
+
 </html>
